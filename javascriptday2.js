@@ -7,13 +7,15 @@ function getHand(){
 
 let player1 = {
     Name: 'Charlie',
-    getHand: () => getHand()
+    getHand:getHand,
+    wins: 0
     }
   
 
   let player2 = {
     Name: "Desmond",
-    getHand: () => getHand()
+    getHand:getHand,
+    wins: 0
     }
   
 
@@ -27,31 +29,37 @@ let player1 = {
 
       }else if (hand1 == "rock" && hand2 == "scissors") {
          result = player1.Name;
+         player1.wins++
         console.log("player1 wins")
       }
     
       else if (hand1 == "scissors" && hand2 == "paper") {
         result = player1.Name;
+        player1.wins++
         console.log("player1 wins")
       }
     
       else if (hand1 == "paper" && hand2 == "rock") {
         result = player1.Name;
+        player1.wins++
         console.log("player1 wins")
       }
     
       else if (hand1 == "scissors" && hand2 == "rock") {
         result = player2.Name;
+        player2.wins++
         console.log("player2 wins")
       }
     
       else if (hand1 == "paper" && hand2 == "scissors") {
         result = player2.Name;
+        player2.wins++
         console.log("player2 wins")
       }
     
       else if (hand1 == "rock" && hand2 == "paper") {
         result = player2.Name;
+        player2.wins++
         console.log("player2 wins")
       }
       return result;
@@ -60,6 +68,10 @@ let player1 = {
 
   console.log(playRound(player1,player2));
 
-  function playGame(){
-      
-  }
+  function playGame(player1, player2, numOfWinsNeeded){
+      for (;player1.wins < numOfWinsNeeded || player2.wins < numOfWinsNeeded;) {
+          playRound(player1, player2);
+      }
+      console.log('We have a winner!')
+    }
+playGame(player1,player2,5)
